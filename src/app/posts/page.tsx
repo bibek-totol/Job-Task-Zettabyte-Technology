@@ -7,21 +7,15 @@ import { Post } from "../type";
 import PostCard from "../components/PostCard";
 import PostCardSkeleton from "../components/PostCardSkeleton";
 import { useEffect, useState } from "react";
+import { useScheduleLoading } from "../hooks/useScheduleLoading";
 
 export default function PostsPage() {
     const { data: posts, loading, error } = useFetch<Post[]>(
       "https://jsonplaceholder.typicode.com/posts"
     );
 
-    const [sceduleloadin, setSceduleloading] = useState(loading);
 
-    useEffect(() => {
-      
-      setTimeout(() => {
-        setSceduleloading(false);
-
-      }, 1700);
-    }, [sceduleloadin])
+    const [scheduleLoading] = useScheduleLoading(loading, 1700);
     
   
     return (
@@ -35,7 +29,7 @@ export default function PostsPage() {
           initial="hidden"
           animate="visible"
         >
-          {sceduleloadin
+          {scheduleLoading
             ? Array.from({ length: 9 }).map((_, i) => (
                 <PostCardSkeleton key={i} index={i} />
               ))

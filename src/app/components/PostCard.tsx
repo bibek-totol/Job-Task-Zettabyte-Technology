@@ -23,7 +23,7 @@ export default function PostCard({ id, title, body }: PostCardProps) {
       animate="visible"
       className="relative bg-white dark:bg-gray-900 h-[230px] shadow-md rounded-lg p-5 hover:shadow-xl transition-shadow"
     >
-      <Link href={`/posts/${id}`}>
+    
         <h2 className="text-xl font-semibold mb-2 text-indigo-600 hover:underline">
           {title}
         </h2>
@@ -31,7 +31,7 @@ export default function PostCard({ id, title, body }: PostCardProps) {
         <motion.button
           onMouseEnter={() => setButtonColor(true)}
           onMouseLeave={() => setButtonColor(false)}
-          className={`shadow-lg ${buttonColor? "shadow-indigo-500" : "shadow-indigo-800"} relative overflow-hidden cursor-pointer  bottom-2 right-4 mt-4 text-white py-2 px-4 rounded-md ${buttonColor ? "bg-gradient-to-r from-indigo-800 to-purple-600 " : "bg-indigo-500"} `}
+          className={`shadow-lg ${buttonColor? "shadow-indigo-500" : "shadow-indigo-800"} relative overflow-hidden  bottom-2 right-4 mt-4 text-white py-2 px-4 rounded-md ${buttonColor ? "bg-gradient-to-r from-indigo-800 to-purple-600 " : "bg-indigo-500"} `}
         >
         
 
@@ -50,10 +50,11 @@ export default function PostCard({ id, title, body }: PostCardProps) {
           />
            </AnimatePresence>
 
-          
-          <span className="relative z-10">View Details</span>
+          <Link href={`/posts/${id}`}>
+          <span className="relative z-10 cursor-pointer">View Details</span>
+          </Link>
         </motion.button>
-      </Link>
+    
     </motion.div>
   );
 }
