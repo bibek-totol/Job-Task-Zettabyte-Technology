@@ -68,7 +68,7 @@ export default function Sidebar() {
                 whileHover={{ x: 5, y: -5 }}
                
             
-                transition={{ duration: 0.4, ease: "linear", type: "tween" }}
+                transition={{ duration: 0.2, ease: "linear", type: "tween" }}
     
                 className={`flex items-center gap-6 px-4 py-2 rounded-md cursor-pointer transition-colors 
                 ${
@@ -83,7 +83,7 @@ export default function Sidebar() {
                  variants={itemVariants}
                  
                  animate={isOpen ? "open" : "closed"}
-                 initial="closed"
+                
                  exit={"closed"}
                  className="font-medium">{item.name}</motion.span>}
                  </AnimatePresence>
@@ -96,16 +96,16 @@ export default function Sidebar() {
       {/* Theme Toggle */}
       <div className="p-4 border-t border-gray-200 dark:border-gray-800 relative bottom-20">
         <motion.button
-        whileTap={{ rotateY: 360 }} // 🔥 full 3D rotation
-        transition={{ duration: 2, repeat:1, ease: "easeInOut" }}
+        whileTap={{ rotateY: 360 }} 
+        transition={{ duration: 0.2, repeat:1, ease: "easeInOut" }}
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           className="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
         >
-          {/* {theme === "dark" ? (
+          {theme === "dark" ? (
             <SunIcon className="h-6 w-6" />
           ) : (
             <MoonIcon className="h-6 w-6" />
-          )} */}
+          )}
           {isOpen && <span>Toggle Theme</span>}
         </motion.button>
       </div>
