@@ -6,7 +6,6 @@ import SidebarLayout from "../components/SidebarLayout";
 import { Post } from "../type";
 import PostCard from "../components/PostCard";
 import PostCardSkeleton from "../components/PostCardSkeleton";
-import { useEffect, useState } from "react";
 import { useScheduleLoading } from "../hooks/useScheduleLoading";
 
 export default function PostsPage() {

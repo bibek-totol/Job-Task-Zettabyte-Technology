@@ -99,7 +99,7 @@ export default function UsersPage() {
                     {selectedUser.company.name}
                   </p>
                   <p className="italic text-sm text-gray-500">
-                    "{selectedUser.company.catchPhrase}"
+                  {`"${selectedUser.company.catchPhrase}"`}
                   </p>
                   <p>
                     <span className="font-semibold">Address:</span>{" "}

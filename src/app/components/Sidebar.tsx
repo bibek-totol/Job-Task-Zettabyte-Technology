@@ -5,8 +5,6 @@ import {
   HomeIcon,
   UserGroupIcon,
   DocumentTextIcon,
-  SunIcon,
-  MoonIcon,
   Bars3Icon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
