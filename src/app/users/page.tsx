@@ -6,11 +6,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { User } from "../type";
 
-
 export default function UsersPage() {
-  const { data: users, loading, error } = useFetch<User[]>(
+  const [endpoint, setEndpoint] = useState(
     "https://jsonplaceholder.typicode.com/users"
   );
+
+  const { data: users, loading, error } = useFetch<User[]>(endpoint);
 
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
@@ -21,11 +22,31 @@ export default function UsersPage() {
           Users
         </h1>
 
-        {loading && <p className="animate-pulse">Loading users...</p>}
-        {error && <p className="text-red-500">{error}</p>}
+       
+        <div className="flex gap-4">
+          <button
+            onClick={() =>
+              setEndpoint("https://jsonplaceholder.typicode.com/users")
+            }
+            className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+          >
+            Load Users 
+          </button>
+          <button
+            onClick={() =>
+              setEndpoint("https://jsonplaceholder.typicode.com/invalid-posts")
+            }
+            className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+          >
+            Trigger Error 
+          </button>
+        </div>
 
-        {users && (
-          <div className="overflow-x-auto rounded-md  shadow">
+        {loading && <p className="animate-pulse">Loading users...</p>}
+        {error && <p className="text-red-500 font-semibold">{error}</p>}
+
+        {users && !error && (
+          <div className="overflow-x-auto rounded-md shadow">
             <table className="w-full border-collapse bg-white dark:bg-gray-900 overflow-x-auto">
               <thead className="bg-gray-100 dark:bg-gray-800 text-left">
                 <tr>
@@ -56,19 +77,18 @@ export default function UsersPage() {
           </div>
         )}
 
-     
+        
         <AnimatePresence>
           {selectedUser && (
             <motion.div
-              className="fixed inset-0 bg-black/50   flex items-center justify-start ml-20 lg:ml-0 lg:justify-center z-50"
-              
+              className="fixed inset-0 bg-black/50 flex items-center justify-start ml-20 lg:ml-0 lg:justify-center z-50"
             >
               <motion.div
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl max-w-lg  relative w-1/2 lg:w-full"
+                className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl max-w-lg relative w-1/2 lg:w-full"
               >
                 <button
                   onClick={() => setSelectedUser(null)}
@@ -99,7 +119,7 @@ export default function UsersPage() {
                     {selectedUser.company.name}
                   </p>
                   <p className="italic text-sm text-gray-500">
-                  {`"${selectedUser.company.catchPhrase}"`}
+                    {`"${selectedUser.company.catchPhrase}"`}
                   </p>
                   <p>
                     <span className="font-semibold">Address:</span>{" "}
