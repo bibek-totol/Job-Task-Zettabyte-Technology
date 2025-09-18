@@ -4,6 +4,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useEffect, useRef } from "react";
+import SidebarLayout from "@/app/components/SidebarLayout";
+
 
 export default function ProfilePage() {
   const { data: session, status } = useSession();
@@ -12,6 +14,7 @@ export default function ProfilePage() {
   const hasShownToast = useRef(false); 
 
   useEffect(() => {
+    console.log(status);
     if (status === "unauthenticated" && !hasShownToast.current) {
       hasShownToast.current = true; 
 
@@ -28,12 +31,18 @@ export default function ProfilePage() {
         router.push("/");
       }, 500);
     }
-  }, [status, router]);
+
+   
+
+    
+  }, [status,router]);
+  
 
   if (status === "loading") return <p>Loading...</p>;
   if (!session) return null;
 
   return (
+    <SidebarLayout>
     <div className="p-6">
       <h1 className="text-3xl font-bold text-indigo-600">Profile</h1>
       <div className="mt-4 space-y-2">
@@ -52,5 +61,6 @@ export default function ProfilePage() {
         )}
       </div>
     </div>
+    </SidebarLayout>
   );
 }

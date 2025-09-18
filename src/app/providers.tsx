@@ -1,13 +1,19 @@
 "use client";
 
-import Loader from "./components/Loader";
-import { useInitialLoader } from "./hooks/useInitialLoader";
 import { SessionProvider } from "next-auth/react";
+import { useEffect, useState } from "react";
+import Loader from "./components/Loader";
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const loading = useInitialLoader(2000);
+  const [initialLoading, setInitialLoading] = useState(true);
 
-  if (loading) {
+  useEffect(() => {
+    
+    const timer = setTimeout(() => setInitialLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (initialLoading) {
     return <Loader />;
   }
 
