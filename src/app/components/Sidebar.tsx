@@ -101,10 +101,10 @@ export default function Sidebar() {
         {session ? (
           <button
           onClick={() => signOut({ callbackUrl: "/" })}
-            className="cursor-pointer flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="cursor-pointer flex flex-col lg:flex-row items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
           >
-            <FcGoogle className="h-8 w-8" />
-            {isOpen && isLarge && <span>Logout</span>}
+            <FcGoogle className="h-10 w-10" />
+            {isOpen && <span>Logout</span>}
           </button>
         ) : (
           <motion.button

@@ -46,36 +46,62 @@ export default function UsersPage() {
         {error && <p className="text-red-500 font-semibold">{error}</p>}
 
         {users && !error && (
-          <div className="overflow-x-auto rounded-md shadow">
-            <table className="w-full border-collapse bg-white dark:bg-gray-900 overflow-x-auto">
-              <thead className="bg-gray-100 dark:bg-gray-800 text-left">
-                <tr>
-                  <th className="px-6 py-3 font-semibold">Name</th>
-                  <th className="px-6 py-3 font-semibold">Email</th>
-                  <th className="px-6 py-3 font-semibold">Company</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user, i) => (
-                  <motion.tr
-                    key={user.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    onClick={() => setSelectedUser(user)}
-                    className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-                  >
-                    <td className="px-6 py-4 border-t">{user.name}</td>
-                    <td className="px-6 py-4 border-t text-indigo-600 dark:text-indigo-400">
-                      {user.email}
-                    </td>
-                    <td className="px-6 py-4 border-t">{user.company.name}</td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+  <div className="overflow-x-auto rounded-md shadow">
+    {/* Table for medium+ screens */}
+    <table className="hidden md:table w-full border-collapse bg-white dark:bg-gray-900">
+      <thead className="bg-gray-100 dark:bg-gray-800 text-left">
+        <tr>
+          <th className="px-6 py-3 font-semibold">Name</th>
+          <th className="px-6 py-3 font-semibold">Email</th>
+          <th className="px-6 py-3 font-semibold">Company</th>
+        </tr>
+      </thead>
+      <tbody>
+        {users.map((user, i) => (
+          <motion.tr
+            key={user.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.05 }}
+            onClick={() => setSelectedUser(user)}
+            className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+          >
+            <td className="px-6 py-4 border-t">{user.name}</td>
+            <td className="px-6 py-4 border-t text-indigo-600 dark:text-indigo-400">
+              {user.email}
+            </td>
+            <td className="px-6 py-4 border-t">{user.company.name}</td>
+          </motion.tr>
+        ))}
+      </tbody>
+    </table>
+
+    
+    <div className="md:hidden space-y-4">
+      {users.map((user, i) => (
+        <motion.div
+          key={user.id}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.05 }}
+          onClick={() => setSelectedUser(user)}
+          className="bg-white dark:bg-gray-900 p-4 rounded-lg shadow cursor-pointer hover:shadow-md transition"
+        >
+          <p className="font-bold text-lg text-indigo-600 dark:text-indigo-400">
+            {user.name}
+          </p>
+          <p className="text-gray-700 dark:text-gray-300">
+            <span className="font-semibold">Email:</span> {user.email}
+          </p>
+          <p className="text-gray-700 dark:text-gray-300">
+            <span className="font-semibold">Company:</span> {user.company.name}
+          </p>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+)}
+
 
         
         <AnimatePresence>
