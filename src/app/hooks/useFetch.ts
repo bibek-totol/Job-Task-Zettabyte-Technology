@@ -25,8 +25,10 @@ export function useFetch<T>(url: string) {
 
         const json = await res.json();
         if (isMounted) setData(json);
-      } catch (err: any) {
-        if (isMounted) setError(err.message || "Something went wrong");
+      } catch (err: unknown) {
+        if (isMounted) {
+          setError((err as Error).message || "Something went wrong");
+        }
       } finally {
         if (isMounted) setLoading(false);
       }
