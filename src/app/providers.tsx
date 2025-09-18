@@ -1,16 +1,15 @@
 "use client";
 
-
 import Loader from "./components/Loader";
 import { useInitialLoader } from "./hooks/useInitialLoader";
-
+import { SessionProvider } from "next-auth/react";
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const loading = useInitialLoader(2500); 
+  const loading = useInitialLoader(2500);
 
   if (loading) {
     return <Loader />;
   }
 
-  return <>{children}</>;
+  return <SessionProvider>{children}</SessionProvider>;
 }
