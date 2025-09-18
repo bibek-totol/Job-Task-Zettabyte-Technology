@@ -31,7 +31,7 @@ export default function PostCard({ id, title, body }: PostCardProps) {
         <motion.button
           onMouseEnter={() => setButtonColor(true)}
           onMouseLeave={() => setButtonColor(false)}
-          className={`shadow-lg ${buttonColor? "shadow-indigo-500" : "shadow-indigo-800"} relative overflow-hidden  bottom-2 right-4 mt-4 text-white py-2 px-4 rounded-md ${buttonColor ? "bg-gradient-to-r from-indigo-800 to-purple-600 " : "bg-indigo-500"} `}
+          className={`shadow-lg ${buttonColor? "shadow-indigo-500" : "shadow-indigo-800"} absolute overflow-hidden  bottom-1 right-4 mt-4 text-white py-2 px-4 rounded-md ${buttonColor ? "bg-gradient-to-r from-indigo-800 to-purple-600 " : "bg-indigo-500"} `}
         >
         
 

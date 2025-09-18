@@ -11,9 +11,8 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Variants } from "framer-motion";
-import { useTheme } from "next-themes";
 
 const navItems = [
   { name: "Dashboard", href: "/", icon: HomeIcon },
@@ -24,7 +23,19 @@ const navItems = [
 export default function Sidebar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
-  const { theme, setTheme } = useTheme();
+
+  const [isLarge, setIsLarge] = useState(false);
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLarge(window.innerWidth >= 1024);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isLarge]);
+
 
 
   const itemVariants: Variants = {
@@ -43,7 +54,7 @@ export default function Sidebar() {
 
   return (
     <motion.aside
-      animate={{ width: isOpen ? 220 : 70 }}
+    animate={{ width: isLarge ? (isOpen ? 220 : 70) : 70 }}
       transition={{ duration: 0.4, ease: "linear" }}
       className="h-screen sticky top-0 left-0 flex flex-col border-r border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-950/70 backdrop-blur-lg shadow-lg"
     >
@@ -65,7 +76,7 @@ export default function Sidebar() {
           return (
             <Link key={item.name} href={item.href}>
               <motion.div
-                whileHover={{ x: 5, y: -5 }}
+                whileHover={{  y: -5 }}
                
             
                 transition={{ duration: 0.2, ease: "linear", type: "tween" }}
@@ -79,7 +90,7 @@ export default function Sidebar() {
               >
                 <Icon className="h-6 w-6" />
                 <AnimatePresence >
-                {isOpen && <motion.span
+                {isOpen && isLarge && <motion.span
                  variants={itemVariants}
                  
                  animate={isOpen ? "open" : "closed"}
@@ -93,21 +104,8 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* Theme Toggle */}
       <div className="p-4 border-t border-gray-200 dark:border-gray-800 relative bottom-20">
-        <motion.button
-        whileTap={{ rotateY: 360 }} 
-        transition={{ duration: 0.2, repeat:1, ease: "easeInOut" }}
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="flex items-center gap-3 w-full px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
-        >
-          {theme === "dark" ? (
-            <SunIcon className="h-6 w-6" />
-          ) : (
-            <MoonIcon className="h-6 w-6" />
-          )}
-          {isOpen && <span>Toggle Theme</span>}
-        </motion.button>
+        
       </div>
     </motion.aside>
   );
