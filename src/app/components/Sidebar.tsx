@@ -119,7 +119,7 @@ export default function Sidebar() {
             className="flex items-center flex-col lg:flex-row gap-3 w-full px-3 py-2 rounded-md bg-gray-800"
           >
             <FcGoogle className="h-8 w-8" />
-            { <span>Login with Google</span>}
+            { isOpen && isLarge && <span>Login with Google</span>}
           </motion.button>
         )}
       </div>

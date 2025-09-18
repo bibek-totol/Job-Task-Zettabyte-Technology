@@ -75,7 +75,7 @@ export default function HomePage() {
           transition={{ duration: 0.8 }}
           className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg"
         >
-          <h2 className="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">
+          <h2 className="text-xl font-bold text-indigo-600 dark:text-indigo-400 mb-20">
             Activity Overview
           </h2>
           <div className="flex items-end gap-4 h-40">
@@ -85,7 +85,7 @@ export default function HomePage() {
                 initial={{ height: 0 }}
                 animate={{ height: h }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex-1 bg-indigo-500 dark:bg-indigo-400 rounded-md"
+                className="flex-1 bg-indigo-500 dark:bg-indigo-400 rounded-md "
                 style={{ height: `${h}%` }}
               />
             ))}
