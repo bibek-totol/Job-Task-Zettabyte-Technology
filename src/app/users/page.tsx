@@ -25,7 +25,7 @@ export default function UsersPage() {
         {error && <p className="text-red-500">{error}</p>}
 
         {users && (
-          <div className=" rounded-md  shadow">
+          <div className="overflow-x-auto rounded-md  shadow">
             <table className="w-full border-collapse bg-white dark:bg-gray-900 overflow-x-auto">
               <thead className="bg-gray-100 dark:bg-gray-800 text-left">
                 <tr>
@@ -60,7 +60,7 @@ export default function UsersPage() {
         <AnimatePresence>
           {selectedUser && (
             <motion.div
-              className="fixed inset-0 bg-black/50  flex items-center justify-center z-50"
+              className="fixed inset-0 bg-black/50   flex items-center justify-start ml-20 lg:ml-0 lg:justify-center z-50"
               
             >
               <motion.div
@@ -68,7 +68,7 @@ export default function UsersPage() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl max-w-lg w-full relative"
+                className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl max-w-lg  relative w-1/2 lg:w-full"
               >
                 <button
                   onClick={() => setSelectedUser(null)}

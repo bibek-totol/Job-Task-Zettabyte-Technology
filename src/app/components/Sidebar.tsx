@@ -54,7 +54,7 @@ export default function Sidebar() {
     <motion.aside
     animate={{ width: isLarge ? (isOpen ? 220 : 70) : 70 }}
       transition={{ duration: 0.4, ease: "linear" }}
-      className="h-screen sticky top-0 left-0 flex flex-col border-r border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-950/70 backdrop-blur-lg shadow-lg"
+      className="h-auto sticky top-0 left-0 flex flex-col border-r border-gray-200 dark:border-gray-800 bg-white/70 dark:bg-gray-950/70 backdrop-blur-lg shadow-lg"
     >
     
       <div className="flex items-center justify-between p-4">
